@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASENDER - Our Values</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            overflow-x: hidden;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+        .nav-link, .dropdown-item {
+            font-weight: 500;
+            color: #343a40 !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .dropdown-item:hover {
+            color: #007bff !important;
+        }
+        .btn-navbar-get-started {
+            background-color: #a7d9e4;
+            border-color: #a7d9e4;
+            color: #212529;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .btn-navbar-get-started:hover {
+            background-color: #8ed0df;
+            border-color: #8ed0df;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .btn-navbar-get-started .icon-circle {
+            background-color: #ffffff;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #212529;
+            transition: transform 0.3s ease;
+        }
+        .btn-navbar-get-started:hover .icon-circle {
+            transform: translateX(3px);
+        }
+
+        /* Hero Section for Our Values Page */
+        .values-hero {
+            background: linear-gradient(to right, #6a82fb, #fc5c7d); /* Dynamic gradient */
+            padding: 80px 0;
+            text-align: center;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 70px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .values-hero::before { /* Subtle pattern/texture */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, #fff 1%, transparent 1%),
+                              linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 15px 15px, 15px 15px, 15px 15px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        .values-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .values-hero h1 {
+            font-weight: 700;
+            font-size: 3.8rem; /* Larger title */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        .values-hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+
+        /* Our Values Cards Section */
+        .our-values-cards-section {
+            padding: 80px 0;
+            background-color: #ffffff;
+            position: relative;
+        }
+        .value-item-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Modern, soft shadow */
+            padding: 40px;
+            margin-bottom: 30px;
+            text-align: center;
+            transition: all 0.4s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid transparent; /* Prepare for border animation */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to top */
+            align-items: center;
+            min-height: 400px; /* Ensure consistent card height */
+        }
+        .value-item-card::before { /* Top accent stripe for modern look */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, #007bff, #28a745); /* Gradient stripe */
+            transition: all 0.4s ease-in-out;
+            transform: scaleX(0);
+            transform-origin: left center;
+        }
+        .value-item-card:hover::before {
+            transform: scaleX(1);
+        }
+        .value-item-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        .value-item-card .icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background-color: #e0f7fa; /* Light background for icon circle */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px auto;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .value-item-card:hover .icon-wrapper {
+            background-color: #bbdefb; /* Change color on hover */
+            transform: rotateY(15deg); /* Slight 3D rotation */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        .value-item-card .icon {
+            font-size: 3.5rem;
+            color: #007bff; /* Primary icon color */
+            transition: all 0.4s ease-in-out;
+        }
+        .value-item-card:hover .icon {
+            color: #0056b3; /* Darker blue on hover */
+            transform: scale(1.1);
+        }
+        .value-item-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 20px;
+        }
+        .value-item-card p {
+            font-size: 1.05rem;
+            color: #5a6268;
+            line-height: 1.7;
+        }
+
+        /* Footer styling (consistent) */
+        .footer {
+            background-color: #212529;
+            color: #adb5bd;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .footer .social-icons a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #adb5bd;
+        }
+        .footer .social-icons a:hover {
+            color: #007bff;
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* No specific zoomIn for this page's hero, general fadeIn */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 992px) {
+            .navbar-nav {
+                justify-content: flex-end;
+            }
+        }
+        @media (max-width: 991.98px) {
+            .values-hero h1 {
+                font-size: 2.8rem;
+            }
+            .values-hero p {
+                font-size: 1.2rem;
+            }
+            .value-item-card {
+                padding: 30px;
+                min-height: auto; /* Allow height to adjust on smaller screens */
+            }
+            .value-item-card .icon-wrapper {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 20px;
+            }
+            .value-item-card .icon {
+                font-size: 3rem;
+            }
+            .value-item-card h3 {
+                font-size: 1.7rem;
+            }
+            .value-item-card p {
+                font-size: 1rem;
+            }
+        }
+        @media (max-width: 767.98px) {
+            .navbar-nav .dropdown-menu {
+                position: static;
+                float: none;
+                width: auto;
+                margin-top: 0;
+                border: none;
+                box-shadow: none;
+                background-color: transparent;
+            }
+            .values-hero h1 {
+                font-size: 2.2rem;
+            }
+            .values-hero p {
+                font-size: 1rem;
+            }
+            .value-item-card {
+                padding: 25px;
+            }
+            .value-item-card h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <img src="./assets/img/logoasender.png" alt="ASENDER Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Homepage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./our-solution.html">Our Solution</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" aria-current="page" href="#" id="ourCompanyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Our Company
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ourCompanyDropdown">
+                            <li><a class="dropdown-item active" href="./our-values.html">Our Values</a></li>
+                            <li><a class="dropdown-item" href="./milestone.html">Milestone</a></li>
+                            <li><a class="dropdown-item" href="./we-provide.html">We Provide</a></li>
+                            <!-- <li><a class="dropdown-item" href="#">Our Clients</a></li>
+                            <li><a class="dropdown-item" href="#">Our Partner</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="./statistics.html">Statistics</a></li>
+                            <li><a class="dropdown-item" href="./let-us-manage.html">Let Us Manage</a></li>
+                            <li><a class="dropdown-item" href="./careers.html">Careers/Hiring</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Contact
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="contactDropdown">
+                            <li><a class="dropdown-item" href="./service-enquiry.html">Service Enquiry</a></li>
+                            <li><a class="dropdown-item" href="./career-enquiry.html">Career Enquiry</a></li>
+                            <li><a class="dropdown-item" href="#">Partnership Enquiry</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <button class="btn btn-navbar-get-started">
+                            Get Started
+                            <span class="icon-circle">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for Our Values -->
+    <section class="values-hero">
+        <div class="container animate-on-scroll">
+            <h1>Our Core Values at ASENDER</h1>
+            <p>Guiding our every action, these values define who we are and how we serve our partners.</p>
+        </div>
+    </section>
+
+    <!-- Our Values Cards Section -->
+    <section class="our-values-cards-section">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <!-- Empathy Card -->
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="value-item-card flex-fill animate-on-scroll" style="animation-delay: 0.1s;">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-hand-holding-heart icon"></i> <!-- Icon for Empathy -->
+                        </div>
+                        <h3>Empathy</h3>
+                        <p>We believe empathy is essential for SMEs to build workplaces where employees feel understood, valued, and motivated to grow together with the business.</p>
+                    </div>
+                </div>
+
+                <!-- Integrity Card -->
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="value-item-card flex-fill animate-on-scroll" style="animation-delay: 0.3s;">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-shield-alt icon"></i> <!-- Icon for Integrity -->
+                        </div>
+                        <h3>Integrity</h3>
+                        <p>We believe that building a fair, and inclusive workplace with unwavering integrity is the foundation for SMEs to earn trust, inspire loyalty, and foster long-term success with their teams and partners.</p>
+                    </div>
+                </div>
+
+                <!-- Efficiency Card -->
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="value-item-card flex-fill animate-on-scroll" style="animation-delay: 0.5s;">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-cogs icon"></i> <!-- Icon for Efficiency -->
+                        </div>
+                        <h3>Efficiency</h3>
+                        <p>Efficiency empowers SMEs to streamline operations, maximize limited resources, yield high cash flow and scale sustainably in a highly competitive market.</p>
+                    </div>
+                </div>
+
+                <!-- Innovation Card -->
+                <div class="col-md-6 col-lg-3 d-flex">
+                    <div class="value-item-card flex-fill animate-on-scroll" style="animation-delay: 0.7s;">
+                        <div class="icon-wrapper">
+                            <i class="fas fa-lightbulb icon"></i> <!-- Icon for Innovation -->
+                        </div>
+                        <h3>Innovation</h3>
+                        <p>We inspire SMEs to embrace innovation through system integration in their workforce strategies, ensuring they stay adaptable, future-ready, and ahead of industry shifts.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (consistent with other pages) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>About Us</h5>
+                    <p>ASENDER is a strategic business support partner dedicated to empowering SMEs with transformative solutions for sustainable growth.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="homepage.html">Homepage</a></li>
+                        <li><a href="our-solution.html">Our Solution</a></li>
+                        <li><a href="our-values.html">Our Values</a></li> <!-- Updated link -->
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="mt-3">&copy; 2025 ASENDER. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js (for dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript for scroll-down fade-in animations (reused from previous pages)
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: Unobserve after animation to save resources
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Optional: Remove class if element scrolls out of view
+                        // entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASENDER - Career Enquiry</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            overflow-x: hidden;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+        .nav-link, .dropdown-item {
+            font-weight: 500;
+            color: #343a40 !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .dropdown-item:hover {
+            color: #007bff !important;
+        }
+        .btn-navbar-get-started {
+            background-color: #a7d9e4;
+            border-color: #a7d9e4;
+            color: #212529;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .btn-navbar-get-started:hover {
+            background-color: #8ed0df;
+            border-color: #8ed0df;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .btn-navbar-get-started .icon-circle {
+            background-color: #ffffff;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #212529;
+            transition: transform 0.3s ease;
+        }
+        .btn-navbar-get-started:hover .icon-circle {
+            transform: translateX(3px);
+        }
+
+        /* Hero Section for Career Enquiry Page */
+        .enquiry-hero {
+            background: linear-gradient(to right, #6a11cb, #20e2d7); /* Purple to turquoise gradient */
+            padding: 80px 0;
+            text-align: center;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 70px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .enquiry-hero::before { /* Animated particles */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.8;
+            animation: particleFlow 25s linear infinite;
+            z-index: 0;
+        }
+        @keyframes particleFlow {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        .enquiry-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .enquiry-hero h1 {
+            font-weight: 700;
+            font-size: 3.2rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            color: #e6e6fa;
+        }
+        .enquiry-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+            color: #d1d1f0;
+        }
+
+        /* Enquiry Form Section */
+        .enquiry-form-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        .illustration-content-col {
+            padding-right: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+        }
+        .illustration-content-col img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .illustration-content-col h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 15px;
+        }
+        .illustration-content-col p {
+            font-size: 1.1rem;
+            color: #5a6268;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .illustration-content-col .text-muted {
+            font-size: 0.9rem;
+        }
+
+        .contact-form-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            border-top: 8px solid #6a11cb; /* Accent border for careers theme */
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .contact-form-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .contact-form-card h2 {
+            font-size: 2rem;
+        }
+        .form-label {
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 8px;
+        }
+        .form-control {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1rem;
+        }
+        .form-control:focus {
+            border-color: #6a11cb; /* Focus color for careers theme */
+            box-shadow: 0 0 0 0.25rem rgba(106, 17, 203, 0.25);
+            outline: none;
+        }
+        .input-group-text {
+            background-color: #e9ecef;
+            border: 1px solid #ced4da;
+            border-right: none;
+            border-radius: 10px 0 0 10px;
+            padding: 12px 15px;
+            font-size: 1rem;
+            color: #495057;
+        }
+        .btn-submit-form {
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient button */
+            border: none;
+            color: #fff;
+            border-radius: 30px;
+            padding: 12px 35px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            margin-top: 20px;
+        }
+        .btn-submit-form:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+        .form-message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            font-weight: 500;
+        }
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Information Section */
+        .info-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        .info-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 5px solid #6a11cb; /* Accent for careers info cards */
+        }
+        .info-card .icon {
+            font-size: 3rem;
+            color: #6a11cb;
+            margin-bottom: 20px;
+        }
+        .info-card h4 {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #212529;
+        }
+        .info-card p {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+
+        /* Footer styling (consistent) */
+        .footer {
+            background-color: #212529;
+            color: #adb5bd;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .footer .social-icons a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #adb5bd;
+        }
+        .footer .social-icons a:hover {
+            color: #007bff;
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 992px) {
+            .navbar-nav {
+                justify-content: flex-end;
+            }
+            .illustration-content-col {
+                padding-right: 30px;
+            }
+            .contact-form-card {
+                margin-left: 15px;
+            }
+        }
+        @media (max-width: 991.98px) {
+            .enquiry-hero h1 {
+                font-size: 2.5rem;
+            }
+            .enquiry-hero p {
+                font-size: 1.1rem;
+            }
+            .illustration-content-col, .contact-form-card {
+                padding-left: 15px;
+                padding-right: 15px;
+                margin-left: 0;
+            }
+            .illustration-content-col {
+                margin-bottom: 40px;
+                align-items: center;
+                text-align: center;
+            }
+        }
+        @media (max-width: 767.98px) {
+            .navbar-nav .dropdown-menu {
+                position: static;
+                float: none;
+                width: auto;
+                margin-top: 0;
+                border: none;
+                box-shadow: none;
+                background-color: transparent;
+            }
+            .enquiry-hero h1 {
+                font-size: 2rem;
+            }
+            .enquiry-hero p {
+                font-size: 1rem;
+            }
+            .contact-form-card {
+                padding: 25px;
+            }
+            .illustration-content-col h2 {
+                font-size: 2rem;
+            }
+            .illustration-content-col p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm navbar-transparent fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="./">
+                <!-- You can replace this with your company logo -->
+                <img src="./assets/img/logoasender.png" alt="ASENDER Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./">Home</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ourCompanyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Our Solution
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ourCompanyDropdown">
+                            <li><a class="dropdown-item" href="./human-resources-solution.html">Human Resources Solution</a></li>
+                            <li><a class="dropdown-item" href="./legal-compliance-solution.html">Legal & Compliance Solution</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ourCompanyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Our Company
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ourCompanyDropdown">
+                            <li><a class="dropdown-item" href="./about-us.html">About Us</a></li>
+                            <li><a class="dropdown-item" href="./we-provide.html">We Provide</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="./asender-blog.html">Asender Blog</a></li>
+                            <li><a class="dropdown-item" href="./careers.html">Careers/Hiring</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Contact
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="contactDropdown">
+                            <li><a class="dropdown-item" href="./service-enquiry.html">Service Enquiry</a></li>
+                            <li><a class="dropdown-item" href="./career-enquiry.html">Career Enquiry</a></li>
+                            <li><a class="dropdown-item" href="./partnership-enquiry.html">Partnership Enquiry</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <button class="btn btn-navbar-get-started">
+                            Get Started
+                            <span class="icon-circle">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for Career Enquiry -->
+    <section class="enquiry-hero">
+        <div class="container animate-on-scroll">
+            <h1>Career Enquiry</h1>
+            <p>Ready to make an impact? Send us your resume and tell us about your aspirations.</p>
+        </div>
+    </section>
+
+    <!-- Career Enquiry Form Section -->
+    <section class="enquiry-form-section">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <!-- Left Column: Illustration and Text -->
+                <div class="col-lg-5 illustration-content-col animate-on-scroll" style="animation-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0c1246d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" onerror="this.onerror=null; this.src='https://placehold.co/600x400/e6e6fa/6a11cb?text=Your+Future+Starts+Here';" alt="Illustration of career growth">
+                    <h2>Join the ASENDER Journey</h2>
+                    <p>We're constantly seeking driven and talented individuals to join our mission of empowering SMEs. If you're passionate about innovation, ethical growth, and making a real impact, we want to hear from you!</p>
+                    <p class="mt-3 text-muted"><small>All applications are treated with strict confidentiality.</small></p>
+                </div>
+
+                <!-- Right Column: Form Card -->
+                <div class="col-lg-7 animate-on-scroll" style="animation-delay: 0.3s;">
+                    <div class="contact-form-card">
+                        <h2 class="text-center mb-4 fw-bold">Submit Your Career Enquiry</h2>
+                        <!-- IMPORTANT: enctype must be set for file uploads -->
+                        <form id="careerEnquiryForm" action="send_career_enquiry.php" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="phoneNumber" class="form-label">Phone Number (Optional)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                    <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="+6012-3456789">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="resume" class="form-label">Upload Resume (PDF only)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-file-upload"></i></span>
+                                    <input type="file" class="form-control" id="resume" name="resume" accept=".pdf" required>
+                                </div>
+                                <div class="form-text">Max file size: 2MB. Only PDF files are accepted.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Area of Interest / Desired Role</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="e.g., Software Developer, HR Consultant" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Your Message / Cover Letter</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-comment-dots"></i></span>
+                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Tell us why you're a great fit for ASENDER..." required></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-submit-form">Submit Application</button>
+                            <div id="formStatusMessage" class="form-message" role="alert"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Information Section (tailored for careers) -->
+    <section class="info-section">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold animate-on-scroll">What We Look For</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="info-card flex-fill animate-on-scroll" style="animation-delay: 0.1s;">
+                        <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+                        <h4>Passion & Empathy</h4>
+                        <p>Individuals who share our commitment to human-centric solutions and making a real impact.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="info-card flex-fill animate-on-scroll" style="animation-delay: 0.3s;">
+                        <div class="icon"><i class="fas fa-lightbulb"></i></div>
+                        <h4>Innovation & Drive</h4>
+                        <p>Problem-solvers who are eager to embrace new technologies and push boundaries.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="info-card flex-fill animate-on-scroll" style="animation-delay: 0.5s;">
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <h4>Collaborative Spirit</h4>
+                        <p>Team players who thrive in a dynamic environment and value collective success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (consistent) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>About Us</h5>
+                    <p>ASENDER is a strategic business support partner dedicated to empowering SMEs with transformative solutions for sustainable growth.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="homepage.html">Homepage</a></li>
+                        <li><a href="our-solution.html">Our Solution</a></li>
+                        <li><a href="our-values.html">Our Values</a></li>
+                        <li><a href="milestone.html">Milestone</a></li>
+                        <li><a href="we-provide.html">We Provide</a></li>
+                        <li><a href="statistics.html">Statistics</a></li>
+                        <li><a href="let-us-manage.html">Let Us Manage</a></li>
+                        <li><a href="careers-hiring.html">Careers/Hiring</a></li>
+                        <li><a href="service-enquiry.html">Service Enquiry</a></li>
+                        <li><a class="active" href="career-enquiry.html">Career Enquiry</a></li> <!-- Active link -->
+                        <li><a href="#">Partnership Enquiry</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="mt-3">&copy; 2025 ASENDER. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js (for dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript for scroll-down fade-in animations (reused)
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Handle form submission status messages from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+            const formStatusMessage = document.getElementById('formStatusMessage');
+
+            if (status === 'success') {
+                formStatusMessage.textContent = 'Your application has been sent successfully! We will review it and get back to you soon.';
+                formStatusMessage.className = 'form-message success';
+                formStatusMessage.style.display = 'block';
+                history.replaceState(null, document.title, window.location.pathname);
+                setTimeout(() => {
+                    formStatusMessage.style.display = 'none';
+                }, 7000);
+            } else if (status === 'error') {
+                const message = urlParams.get('message') || 'There was an error submitting your application. Please try again.';
+                formStatusMessage.textContent = message;
+                formStatusMessage.className = 'form-message error';
+                formStatusMessage.style.display = 'block';
+                history.replaceState(null, document.title, window.location.pathname);
+                setTimeout(() => {
+                    formStatusMessage.style.display = 'none';
+                }, 7000);
+            }
+        });
+    </script>
+</body>
+</html>

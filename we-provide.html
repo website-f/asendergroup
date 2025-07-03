@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASENDER - We Provide</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            overflow-x: hidden;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+        .nav-link, .dropdown-item {
+            font-weight: 500;
+            color: #343a40 !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .dropdown-item:hover {
+            color: #007bff !important;
+        }
+        .btn-navbar-get-started {
+            background-color: #a7d9e4;
+            border-color: #a7d9e4;
+            color: #212529;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .btn-navbar-get-started:hover {
+            background-color: #8ed0df;
+            border-color: #8ed0df;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .btn-navbar-get-started .icon-circle {
+            background-color: #ffffff;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #212529;
+            transition: transform 0.3s ease;
+        }
+        .btn-navbar-get-started:hover .icon-circle {
+            transform: translateX(3px);
+        }
+
+        /* Hero Section for We Provide Page */
+        .provide-hero {
+            background: linear-gradient(to bottom right, #4CAF50, #2E8B57); /* Greenish gradient for services */
+            padding: 80px 0;
+            text-align: center;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 70px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .provide-hero::before { /* Subtle diagonal line pattern */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+                              linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%);
+            background-size: 40px 40px;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .provide-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .provide-hero h1 {
+            font-weight: 700;
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            color: #e8f5e9; /* Lighter color for heading */
+        }
+        .provide-hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+            color: #c8e6c9; /* Lighter color for paragraph */
+        }
+
+        /* Service Cards Section */
+        .service-cards-section {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+        .service-card-wrapper {
+            background-color: #f0f4f8; /* Light background for the container of each service item */
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            padding: 30px;
+            transition: all 0.4s ease-in-out;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+        }
+        .service-card-wrapper:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .service-card-wrapper::before { /* Accent border on hover */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, #007bff, #28a745);
+            transition: all 0.4s ease-in-out;
+            transform: scaleX(0);
+            transform-origin: left center;
+        }
+        .service-card-wrapper:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon-col {
+            flex-shrink: 0; /* Prevent icon column from shrinking */
+            width: 150px; /* Fixed width for icon image */
+            height: 150px; /* Fixed height for icon image */
+            margin-right: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .service-card-wrapper:hover .service-icon-col {
+            transform: scale(1.05); /* Slight zoom on icon image hover */
+        }
+        .service-icon-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .service-content-col {
+            flex-grow: 1;
+            text-align: left;
+        }
+        .service-content-col h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 15px;
+        }
+        .service-content-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .service-content-col ul li {
+            font-size: 1.05rem;
+            color: #5a6268;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        .service-content-col ul li i {
+            color: #007bff; /* Blue icon for list items */
+            margin-right: 10px;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        /* Special style for Our Alliances */
+        .alliances-card {
+            background: linear-gradient(135deg, #1a237e, #3f51b5); /* Darker blue gradient */
+            color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .alliances-card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: pulse-light 4s infinite ease-in-out;
+            z-index: 0;
+        }
+        .alliances-card::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 120px;
+            height: 120px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            animation: pulse-light 3.5s infinite ease-in-out reverse;
+            z-index: 0;
+        }
+        .alliances-card .content {
+            position: relative;
+            z-index: 1;
+        }
+        .alliances-card .icon-hands {
+            font-size: 4rem;
+            margin-bottom: 25px;
+            color: #a7d9e4; /* Light blue from navbar button */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .alliances-card h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #e0f7fa;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        .alliances-card ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        .alliances-card ul li {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #bbdefb;
+            position: relative;
+            padding-left: 25px;
+        }
+        .alliances-card ul li::before {
+            content: '\2022'; /* Bullet point */
+            color: #a7d9e4;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Footer styling (consistent) */
+        .footer {
+            background-color: #212529;
+            color: #adb5bd;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .footer .social-icons a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #adb5bd;
+        }
+        .footer .social-icons a:hover {
+            color: #007bff;
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes pulse-light {
+            0% {
+                transform: scale(0.9);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.9);
+                opacity: 0.7;
+            }
+        }
+
+
+        /* Responsive adjustments */
+        @media (min-width: 992px) {
+            .navbar-nav {
+                justify-content: flex-end;
+            }
+            /* Adjust layout for larger screens if needed */
+            .service-card-wrapper.reverse-row {
+                flex-direction: row-reverse;
+            }
+            .service-card-wrapper.reverse-row .service-icon-col {
+                margin-left: 30px;
+                margin-right: 0;
+            }
+        }
+        @media (max-width: 991.98px) {
+            .provide-hero h1 {
+                font-size: 2.8rem;
+            }
+            .provide-hero p {
+                font-size: 1.2rem;
+            }
+            .service-card-wrapper {
+                flex-direction: column; /* Stack image and content on smaller screens */
+                text-align: center;
+                padding: 25px;
+            }
+            .service-icon-col {
+                margin-right: 0;
+                margin-bottom: 20px;
+                width: 120px; /* Smaller image on mobile */
+                height: 120px; /* Smaller image on mobile */
+            }
+            .service-content-col h3 {
+                font-size: 1.8rem;
+            }
+            .service-content-col ul {
+                text-align: left; /* Keep list items left-aligned */
+            }
+            .service-content-col ul li {
+                justify-content: flex-start; /* Ensure items align correctly */
+            }
+            .alliances-card h3 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 767.98px) {
+            .navbar-nav .dropdown-menu {
+                position: static;
+                float: none;
+                width: auto;
+                margin-top: 0;
+                border: none;
+                box-shadow: none;
+                background-color: transparent;
+            }
+            .provide-hero h1 {
+                font-size: 2.2rem;
+            }
+            .provide-hero p {
+                font-size: 1rem;
+            }
+            .service-content-col h3 {
+                font-size: 1.5rem;
+            }
+            .service-content-col ul li {
+                font-size: 0.95rem;
+            }
+            .alliances-card h3 {
+                font-size: 1.8rem;
+            }
+            .alliances-card ul li {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm navbar-transparent fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="./">
+                <!-- You can replace this with your company logo -->
+                <img src="./assets/img/logoasender.png" alt="ASENDER Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./">Home</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ourCompanyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Our Solution
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ourCompanyDropdown">
+                            <li><a class="dropdown-item" href="./human-resources-solution.html">Human Resources Solution</a></li>
+                            <li><a class="dropdown-item" href="./legal-compliance-solution.html">Legal & Compliance Solution</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ourCompanyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Our Company
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ourCompanyDropdown">
+                            <li><a class="dropdown-item" href="./about-us.html">About Us</a></li>
+                            <li><a class="dropdown-item" href="./we-provide.html">We Provide</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="./asender-blog.html">Asender Blog</a></li>
+                            <li><a class="dropdown-item" href="./careers.html">Careers/Hiring</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Contact
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="contactDropdown">
+                            <li><a class="dropdown-item" href="./service-enquiry.html">Service Enquiry</a></li>
+                            <li><a class="dropdown-item" href="./career-enquiry.html">Career Enquiry</a></li>
+                            <li><a class="dropdown-item" href="./partnership-enquiry.html">Partnership Enquiry</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <button class="btn btn-navbar-get-started">
+                            Get Started
+                            <span class="icon-circle">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for We Provide -->
+    <section class="provide-hero">
+        <div class="container animate-on-scroll">
+            <h1>Comprehensive Solutions We Provide</h1>
+            <p>Empowering your business with tailored HR, operational, and strategic support.</p>
+        </div>
+    </section>
+
+    <!-- Service Cards Section -->
+    <section class="service-cards-section">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold animate-on-scroll">Our Core Service Offerings</h2>
+
+            <!-- Essential HR Card -->
+            <div class="service-card-wrapper animate-on-scroll" style="animation-delay: 0.1s;">
+                <div class="service-icon-col">
+                    <img src="https://placehold.co/150x150/bbdefb/007bff?text=Payroll+Icon" alt="Payroll Icon">
+                </div>
+                <div class="service-content-col">
+                    <h3>ESSENTIAL HR</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Perfect for startups & small teams.</li>
+                        <li><i class="fas fa-check-circle"></i> Payroll, Statutory Payment, Pay slips, Email Support — simplified.</li>
+                        <li><i class="fas fa-check-circle"></i> Customized for Micro-Small Company</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Growth Partner Card -->
+            <div class="service-card-wrapper reverse-row animate-on-scroll" style="animation-delay: 0.3s;">
+                <div class="service-icon-col">
+                    <img src="https://placehold.co/150x150/bbdefb/007bff?text=Policy+Icon" alt="Policy Icon">
+                </div>
+                <div class="service-content-col">
+                    <h3>GROWTH PARTNER</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> ESSENTIAL HR + Compliance Oversight</li>
+                        <li><i class="fas fa-check-circle"></i> Ideal for growing businesses.</li>
+                        <li><i class="fas fa-check-circle"></i> HR Policy, Handbook, Recruitment & Advisory.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Strategic Partner Card -->
+            <div class="service-card-wrapper animate-on-scroll" style="animation-delay: 0.5s;">
+                <div class="service-icon-col">
+                    <img src="https://placehold.co/150x150/bbdefb/007bff?text=Strategic+Icon" alt="Strategic Icon">
+                </div>
+                <div class="service-content-col">
+                    <h3>STRATEGIC PARTNER</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> ESSENTIAL HR + GROWTH PARTNER</li>
+                        <li><i class="fas fa-check-circle"></i> For scaling SMEs & multi-location businesses.</li>
+                        <li><i class="fas fa-check-circle"></i> KPI Management</li>
+                        <li><i class="fas fa-check-circle"></i> Dispute Resolution</li>
+                        <li><i class="fas fa-check-circle"></i> Organization Restructure</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Project Based Card -->
+            <div class="service-card-wrapper reverse-row animate-on-scroll" style="animation-delay: 0.7s;">
+                <div class="service-icon-col">
+                    <img src="https://placehold.co/150x150/bbdefb/007bff?text=Project+Icon" alt="Project Icon">
+                </div>
+                <div class="service-content-col">
+                    <h3>PROJECT BASED</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Legal / Contracts Dispute Resolution</li>
+                        <li><i class="fas fa-check-circle"></i> Recruitment Placement</li>
+                        <li><i class="fas fa-check-circle"></i> Labor Law Compliance Audit</li>
+                        <li><i class="fas fa-check-circle"></i> Foreign labors sourcing and compliance</li>
+                        <li><i class="fas fa-check-circle"></i> Tech system setup for support functions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Our Alliances Card -->
+            <div class="alliances-card animate-on-scroll" style="animation-delay: 0.9s;">
+                <div class="content">
+                    <i class="fas fa-handshake icon-hands"></i>
+                    <h3>OUR ALLIANCES</h3>
+                    <ul>
+                        <li>Industrial Court experienced legal counsels</li>
+                        <li>Custom software development firm</li>
+                        <li>HRDF accredited training firms</li>
+                        <li>Event management team</li>
+                        <li>Recruitment firms</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer (consistent) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>About Us</h5>
+                    <p>ASENDER is a strategic business support partner dedicated to empowering SMEs with transformative solutions for sustainable growth.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="homepage.html">Homepage</a></li>
+                        <li><a href="our-solution.html">Our Solution</a></li>
+                        <li><a href="our-values.html">Our Values</a></li>
+                        <li><a href="milestone.html">Milestone</a></li>
+                        <li><a href="we-provide.html">We Provide</a></li> <!-- Updated link -->
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="mt-3">&copy; 2025 ASENDER. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js (for dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript for scroll-down fade-in animations (reused)
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: Unobserve after animation to save resources
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Optional: Remove class if element scrolls out of view
+                        // entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

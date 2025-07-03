@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASENDER - Milestones</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            overflow-x: hidden;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+        .nav-link, .dropdown-item {
+            font-weight: 500;
+            color: #343a40 !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .dropdown-item:hover {
+            color: #007bff !important;
+        }
+        .btn-navbar-get-started {
+            background-color: #a7d9e4;
+            border-color: #a7d9e4;
+            color: #212529;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .btn-navbar-get-started:hover {
+            background-color: #8ed0df;
+            border-color: #8ed0df;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .btn-navbar-get-started .icon-circle {
+            background-color: #ffffff;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #212529;
+            transition: transform 0.3s ease;
+        }
+        .btn-navbar-get-started:hover .icon-circle {
+            transform: translateX(3px);
+        }
+
+        /* Hero Section for Milestones Page */
+        .milestone-hero {
+            background: linear-gradient(to bottom right, #36454F, #0A192F); /* Dark, sophisticated gradient */
+            padding: 80px 0;
+            text-align: center;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 70px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .milestone-hero::before { /* Subtle grid pattern/texture */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        .milestone-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .milestone-hero h1 {
+            font-weight: 700;
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            color: #e0f7fa; /* Lighter color for heading */
+        }
+        .milestone-hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+            color: #bbdefb; /* Lighter color for paragraph */
+        }
+
+        /* Milestone Cards Section */
+        .milestone-section {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+        .milestone-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 25px; /* Adjusted padding */
+            padding-top: 55px; /* Extra padding for year badge */
+            margin-bottom: 40px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 500px; /* Ensure consistent height */
+        }
+        .milestone-card:hover {
+            transform: translateY(-15px) scale(1.01);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        .milestone-card .year-badge {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 20px; /* Smaller padding for a sleeker badge */
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: absolute;
+            top: 20px; /* Position higher on the card */
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 3px 10px rgba(0, 123, 255, 0.3);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        .milestone-card:hover .year-badge {
+            background-color: #0056b3;
+            transform: translateX(-50%) translateY(-3px); /* Slight lift on hover */
+        }
+
+        .milestone-card .image-wrapper {
+            width: 100%;
+            height: 200px; /* Fixed height for consistent image size */
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px; /* Adjusted margin */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .milestone-card .image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease-in-out;
+        }
+        .milestone-card:hover .image-wrapper img {
+            transform: scale(1.05);
+        }
+        .milestone-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        .milestone-card p {
+            font-size: 1rem;
+            color: #5a6268;
+            line-height: 1.7;
+            text-align: left; /* Align text to left within card */
+            flex-grow: 1; /* Allow paragraph to take available space */
+        }
+        .milestone-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            text-align: left;
+            width: 100%;
+        }
+        .milestone-card ul li {
+            font-size: 0.95rem;
+            color: #495057;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .milestone-card ul li i {
+            color: #28a745; /* Green checkmark */
+            margin-right: 10px;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        /* Footer styling (consistent) */
+        .footer {
+            background-color: #212529;
+            color: #adb5bd;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .footer .social-icons a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #adb5bd;
+        }
+        .footer .social-icons a:hover {
+            color: #007bff;
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 992px) {
+            .navbar-nav {
+                justify-content: flex-end;
+            }
+        }
+        @media (max-width: 991.98px) {
+            .milestone-hero h1 {
+                font-size: 2.8rem;
+            }
+            .milestone-hero p {
+                font-size: 1.2rem;
+            }
+            .milestone-card {
+                padding: 30px;
+                padding-top: 60px; /* Adjust padding-top for year badge on medium screens */
+                min-height: auto;
+            }
+        }
+        @media (max-width: 767.98px) {
+            .navbar-nav .dropdown-menu {
+                position: static;
+                float: none;
+                width: auto;
+                margin-top: 0;
+                border: none;
+                box-shadow: none;
+                background-color: transparent;
+            }
+            .milestone-hero h1 {
+                font-size: 2.2rem;
+            }
+            .milestone-hero p {
+                font-size: 1rem;
+            }
+            .milestone-card {
+                padding: 25px;
+                padding-top: 50px; /* Adjust padding-top for year badge on small screens */
+            }
+            .milestone-card h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <img src="./assets/img/logoasender.png" alt="ASENDER Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html">Homepage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./our-solution.html">Our Solution</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" aria-current="page" href="#" id="ourCompanyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Our Company
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ourCompanyDropdown">
+                            <li><a class="dropdown-item" href="./our-values.html">Our Values</a></li>
+                            <li><a class="dropdown-item active" href="./milestone.html">Milestone</a></li>
+                            <li><a class="dropdown-item" href="./we-provide.html">We Provide</a></li>
+                            <!-- <li><a class="dropdown-item" href="#">Our Clients</a></li>
+                            <li><a class="dropdown-item" href="#">Our Partner</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="./statistics.html">Statistics</a></li>
+                            <li><a class="dropdown-item" href="./let-us-manage.html">Let Us Manage</a></li>
+                            <li><a class="dropdown-item" href="./careers.html">Careers/Hiring</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Contact
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="contactDropdown">
+                            <li><a class="dropdown-item" href="./service-enquiry.html">Service Enquiry</a></li>
+                            <li><a class="dropdown-item" href="./career-enquiry.html">Career Enquiry</a></li>
+                            <li><a class="dropdown-item" href="#">Partnership Enquiry</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <button class="btn btn-navbar-get-started">
+                            Get Started
+                            <span class="icon-circle">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for Milestones -->
+    <section class="milestone-hero">
+        <div class="container animate-on-scroll">
+            <h1>KEY MILESTONES & ACHIEVEMENT</h1>
+            <p>Tracking our journey of growth and success in empowering SMEs.</p>
+        </div>
+    </section>
+
+    <!-- Milestone Cards Section -->
+    <section class="milestone-section">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <!-- 2023 Milestone -->
+                <div class="col-md-8 col-lg-4 d-flex">
+                    <div class="milestone-card flex-fill animate-on-scroll" style="animation-delay: 0.1s;">
+                        <span class="year-badge">2023</span>
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/600x400/0A192F/e0f7fa?text=ASENDER+Founded" alt="ASENDER Founding">
+                        </div>
+                        <h3>ASENDER Founded</h3>
+                        <p>Onboarded first 5 SMEs clients in engineering & construction services.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> ASENDER Founded</li>
+                            <li><i class="fas fa-check-circle"></i> 5 SME Clients Onboarded</li>
+                            <li><i class="fas fa-check-circle"></i> Engineering & Construction Focus</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2024 Milestone -->
+                <div class="col-md-8 col-lg-4 d-flex">
+                    <div class="milestone-card flex-fill animate-on-scroll" style="animation-delay: 0.3s;">
+                        <span class="year-badge">2024</span>
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/600x400/007bff/ffffff?text=MYR+0.5M+Revenue" alt="Revenue Achievement">
+                        </div>
+                        <h3>Significant Growth</h3>
+                        <p>Achieved MYR 0.5 million revenue for the 1st year. Expanded services to include automated payroll for foreign labors.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> MYR 0.5M Revenue Achieved</li>
+                            <li><i class="fas fa-check-circle"></i> Expanded Services</li>
+                            <li><i class="fas fa-check-circle"></i> Automated Payroll for Foreign Labors</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2025 Milestone -->
+                <div class="col-md-8 col-lg-4 d-flex">
+                    <div class="milestone-card flex-fill animate-on-scroll" style="animation-delay: 0.5s;">
+                        <span class="year-badge">2025</span>
+                        <div class="image-wrapper">
+                            <img src="https://placehold.co/600x400/28a745/ffffff?text=Strategic+Partnerships" alt="Strategic Partnerships">
+                        </div>
+                        <h3>Future Projections</h3>
+                        <p>Projected growth of Micro-enterprise & SME client base. Strategic partnerships in construction & engineering, retail chains, F&B groups, tech startups and logistics sectors.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Projected Client Base Growth</li>
+                            <li><i class="fas fa-check-circle"></i> New Strategic Partnerships</li>
+                            <li><i class="fas fa-check-circle"></i> Diverse Sector Expansion</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (consistent with other pages) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>About Us</h5>
+                    <p>ASENDER is a strategic business support partner dedicated to empowering SMEs with transformative solutions for sustainable growth.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="homepage.html">Homepage</a></li>
+                        <li><a href="our-solution.html">Our Solution</a></li>
+                        <li><a href="our-values.html">Our Values</a></li>
+                        <li><a class="active" href="milestone.html">Milestone</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="mt-3">&copy; 2025 ASENDER. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js (for dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript for scroll-down fade-in animations (reused)
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: Unobserve after animation to save resources
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Optional: Remove class if element scrolls out of view
+                        // entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

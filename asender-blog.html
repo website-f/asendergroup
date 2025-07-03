@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASENDER - Blog</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            overflow-x: hidden;
+        }
+        .navbar-brand img {
+            height: 40px;
+        }
+        .navbar-nav {
+            width: 100%;
+            justify-content: center;
+        }
+        .nav-link, .dropdown-item {
+            font-weight: 500;
+            color: #343a40 !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .dropdown-item:hover {
+            color: #007bff !important;
+        }
+        .btn-navbar-get-started {
+            background-color: #a7d9e4;
+            border-color: #a7d9e4;
+            color: #212529;
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .btn-navbar-get-started:hover {
+            background-color: #8ed0df;
+            border-color: #8ed0df;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        .btn-navbar-get-started .icon-circle {
+            background-color: #ffffff;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #212529;
+            transition: transform 0.3s ease;
+        }
+        .btn-navbar-get-started:hover .icon-circle {
+            transform: translateX(3px);
+        }
+
+        /* Hero Section for Blog Page - New color scheme */
+        .blog-hero {
+            background: linear-gradient(to right, #2c3e50, #4a69bd); /* Deep blue/grey to a softer blue */
+            padding: 100px 0;
+            text-align: center;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 70px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .blog-hero::before { /* Subtle diagonal lines */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(45deg, rgba(255,255,255,0.05) 25%, transparent 25%),
+                              linear-gradient(-45deg, rgba(255,255,255,0.05) 25%, transparent 25%);
+            background-size: 40px 40px;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .blog-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .blog-hero h1 {
+            font-weight: 700;
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+            color: #ecf0f1; /* Lighter text for contrast */
+        }
+        .blog-hero p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+            color: #bdc3c7; /* Muted text color */
+        }
+
+        /* Blog Posts Section */
+        .blog-posts-section {
+            padding: 80px 0;
+            background-color: #f8f9fa; /* Match body background */
+        }
+        .blog-card {
+            background-color: #ffffff; /* Base background, will be covered by image */
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+            text-align: left;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Align content to bottom */
+            min-height: 400px; /* Adjusted height to show image and overlay */
+        }
+        .blog-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+        }
+        .blog-card .blog-image-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.4s ease-in-out;
+            border-radius: 15px; /* Apply border-radius to image background */
+        }
+        .blog-card:hover .blog-image-background {
+            transform: scale(1.05); /* Zoom image on hover */
+        }
+        .blog-card .overlay-content {
+            position: relative; /* Make content relative to card */
+            z-index: 2; /* Ensure content is above image */
+            padding: 25px; /* Padding for text */
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.5) 50%, transparent 100%); /* Gradient overlay */
+            color: #fff; /* White text */
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            padding-top: 100px; /* Push content from top, making it appear at bottom */
+        }
+        .blog-card .blog-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff; /* White title */
+            margin-bottom: 10px;
+            line-height: 1.3;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+        .blog-card .blog-snippet {
+            font-size: 0.95rem;
+            color: #e0e0e0; /* Lighter snippet text */
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .blog-card .btn-explore {
+            background: linear-gradient(to right, #4a69bd, #2c3e50); /* New gradient for button */
+            border: none;
+            color: #fff;
+            border-radius: 30px;
+            padding: 10px 30px; /* Slightly smaller button */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .blog-card .btn-explore:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Footer styling (consistent) */
+        .footer {
+            background-color: #212529;
+            color: #adb5bd;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .footer .social-icons a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: #adb5bd;
+        }
+        .footer .social-icons a:hover {
+            color: #007bff;
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 992px) {
+            .navbar-nav {
+                justify-content: flex-end;
+            }
+        }
+        @media (max-width: 991.98px) {
+            .blog-hero h1 {
+                font-size: 2.8rem;
+            }
+            .blog-hero p {
+                font-size: 1.2rem;
+            }
+            .blog-card {
+                min-height: 400px; /* Adjust min-height for tablets */
+            }
+            .blog-card .blog-title {
+                font-size: 1.5rem;
+            }
+            .blog-card .blog-snippet {
+                font-size: 0.9rem;
+            }
+            .blog-card .overlay-content {
+                padding-top: 80px; /* Adjust padding for smaller screens */
+            }
+        }
+        @media (max-width: 767.98px) {
+            .navbar-nav .dropdown-menu {
+                position: static;
+                float: none;
+                width: auto;
+                margin-top: 0;
+                border: none;
+                box-shadow: none;
+                background-color: transparent;
+            }
+            .blog-hero h1 {
+                font-size: 2.2rem;
+            }
+            .blog-hero p {
+                font-size: 1rem;
+            }
+            .blog-card {
+                min-height: 350px; /* Adjust min-height for mobile */
+            }
+            .blog-card .blog-title {
+                font-size: 1.3rem;
+            }
+            .blog-card .blog-snippet {
+                font-size: 0.85rem;
+            }
+            .blog-card .overlay-content {
+                padding-top: 60px; /* Adjust padding for mobile */
+            }
+            .blog-card .btn-explore {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm navbar-transparent fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="./">
+                <!-- You can replace this with your company logo -->
+                <img src="./assets/img/logoasender.png" alt="ASENDER Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./">Home</a>
+                    </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ourCompanyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Our Solution
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ourCompanyDropdown">
+                            <li><a class="dropdown-item" href="./human-resources-solution.html">Human Resources Solution</a></li>
+                            <li><a class="dropdown-item" href="./legal-compliance-solution.html">Legal & Compliance Solution</a></li>
+                            
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="ourCompanyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Our Company
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="ourCompanyDropdown">
+                            <li><a class="dropdown-item" href="./about-us.html">About Us</a></li>
+                            <li><a class="dropdown-item" href="./we-provide.html">We Provide</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                            <li><a class="dropdown-item" href="./asender-blog.html">Asender Blog</a></li>
+                            <li><a class="dropdown-item" href="./careers.html">Careers/Hiring</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Contact
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="contactDropdown">
+                            <li><a class="dropdown-item" href="./service-enquiry.html">Service Enquiry</a></li>
+                            <li><a class="dropdown-item" href="./career-enquiry.html">Career Enquiry</a></li>
+                            <li><a class="dropdown-item" href="./partnership-enquiry.html">Partnership Enquiry</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <button class="btn btn-navbar-get-started">
+                            Get Started
+                            <span class="icon-circle">
+                                <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section for Blog -->
+    <section class="blog-hero">
+        <div class="container animate-on-scroll">
+            <h1>Our Latest Insights & Articles</h1>
+            <p>Stay informed with expert perspectives on HR, compliance, and business growth.</p>
+        </div>
+    </section>
+
+    <!-- Blog Posts Section -->
+    <section class="blog-posts-section">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <!-- Blog Post 1: Majikan tidak boleh potong gaji pekerja tanpa kebenaran -->
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="blog-card flex-fill animate-on-scroll" style="animation-delay: 0.1s;">
+                        <div class="blog-image-background" style="background-image: url('./assets/img/blog1.png');"></div>
+                        <div class="overlay-content">
+                            <h3 class="blog-title">Majikan tidak boleh potong gaji pekerja tanpa kebenaran</h3>
+                            <p class="blog-snippet">Memahami hak-hak pekerja adalah penting. Artikel ini menjelaskan peraturan mengenai pemotongan gaji dan kepentingan mendapatkan kebenaran daripada pekerja.</p>
+                            <a href="https://hrnews.my/2019/07/22/majikan-tidak-boleh-potong-gaji-pekerja-tanpa-kebenaran/" class="btn-explore" target="_blank">
+                                Explore
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2: Employers Must Stay Prepared as Immigration Enforcement Policy Changes -->
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="blog-card flex-fill animate-on-scroll" style="animation-delay: 0.3s;">
+                        <div class="blog-image-background" style="background-image: url('./assets/img/blog2.png');"></div>
+                        <div class="overlay-content">
+                            <h3 class="blog-title">Employers Must Stay Prepared as Immigration Enforcement Policy Changes</h3>
+                            <p class="blog-snippet">Navigating evolving immigration policies is crucial for employers. Learn how to stay compliant and prepared for changes in enforcement that impact your workforce.</p>
+                            <a href="https://www.shrm.org/topics-tools/news/talent-acquisition/employers-must-prepare-as-immigration-enforcement-policy-changes" class="btn-explore" target="_blank">
+                                Explore
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 3: Labor market slows as jobless claims rise to highest level since 2021 -->
+                <div class="col-md-6 col-lg-4 d-flex">
+                    <div class="blog-card flex-fill animate-on-scroll" style="animation-delay: 0.5s;">
+                        <div class="blog-image-background" style="background-image: url('./assets/img/blog3.png');"></div>
+                        <div class="overlay-content">
+                            <h3 class="blog-title">Labor market slows as jobless claims rise to highest level since 2021</h3>
+                            <p class="blog-snippet">An in-depth look at the current state of the labor market, analyzing the rise in jobless claims and its potential implications for businesses and the economy.</p>
+                            <a href="https://www.hrdive.com/news/labor-market-slows-jobless-claims-rising-highest-level-2021-inflation-Fed-Powell/751831/" class="btn-explore" target="_blank">
+                                Explore
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (consistent) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>About Us</h5>
+                    <p>ASENDER is a strategic business support partner dedicated to empowering SMEs with transformative solutions for sustainable growth.</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="homepage.html">Homepage</a></li>
+                        <li><a href="our-solution.html">Our Solution</a></li>
+                        <li><a href="our-values.html">Our Values</a></li>
+                        <li><a href="milestone.html">Milestone</a></li>
+                        <li><a href="we-provide.html">We Provide</a></li>
+                        <li><a href="statistics.html">Statistics</a></li>
+                        <li><a href="let-us-manage.html">Let Us Manage</a></li>
+                        <li><a href="careers-hiring.html">Careers/Hiring</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="service-enquiry.html">Service Enquiry</a></li>
+                        <li><a href="career-enquiry.html">Career Enquiry</a></li>
+                        <li><a href="partnership-enquiry.html">Partnership Enquiry</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Connect With Us</h5>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <p class="mt-3">&copy; 2025 ASENDER. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Popper.js (for dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript for scroll-down fade-in animations (reused)
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
