@@ -20,17 +20,40 @@
         .navbar-brand img {
             height: 40px;
         }
-        .navbar-nav {
-            width: 100%;
-            justify-content: center;
+         /* Navbar styling for transparent and scrolled states */
+        .navbar-transparent {
+            background-color: transparent; /* Removed !important */
+            box-shadow: none; /* Removed !important */
+            transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
         }
-        .nav-link, .dropdown-item {
+        .navbar-scrolled {
+            background-color: #ffffff; /* Removed !important */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Removed !important */
+            transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+        }
+
+        /* Default link styles (for when navbar is scrolled and opaque) */
+        /* These rules will apply when .navbar-scrolled is present or no specific state is active */
+        .navbar-light .navbar-nav .nav-link,
+        .navbar-light .navbar-nav .dropdown-item {
             font-weight: 500;
-            color: #343a40 !important;
+            color: #343a40; /* Default dark text */
             transition: all 0.3s ease;
         }
-        .nav-link:hover, .dropdown-item:hover {
-            color: #007bff !important;
+        .navbar-light .navbar-nav .nav-link:hover,
+        .navbar-light .navbar-nav .dropdown-item:hover {
+            color: #007bff; /* Bootstrap primary blue */
+        }
+
+        /* Styles specifically for transparent navbar state (higher specificity) */
+        .navbar-transparent.navbar-light .navbar-nav .nav-link,
+        .navbar-transparent.navbar-light .navbar-nav {
+            color: #ffffff; /* White text for transparent state */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Add shadow to text for readability */
+        }
+        .navbar-transparent.navbar-light .navbar-nav .nav-link:hover,
+        .navbar-transparent.navbar-light .navbar-nav .dropdown-item:hover {
+            color: #a7d9e4; /* Lighter hover color for transparent state */
         }
         .btn-navbar-get-started {
             background-color: #a7d9e4;
@@ -465,22 +488,56 @@
     </footer>
 
     <!-- Bootstrap JS and Popper.js (for dropdowns) -->
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <script>
-        // JavaScript for scroll-down fade-in animations (reused)
+     <script>
+        // JavaScript for scroll-down fade-in animations
         document.addEventListener('DOMContentLoaded', () => {
             const animateElements = document.querySelectorAll('.animate-on-scroll');
+            const mainNavbar = document.getElementById('mainNavbar');
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                    } else {
+                        // Optional: Remove class if element scrolls out of view
+                        // entry.target.classList.remove('is-visible');
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
 
             animateElements.forEach(element => {
                 observer.observe(element);
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) { // Adjust this value as needed
+                    mainNavbar.classList.remove('navbar-transparent');
+                    mainNavbar.classList.add('navbar-scrolled');
+                    // Ensure text color reverts to dark when scrolled
+                    mainNavbar.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+                        link.style.color = '#343a40'; // Dark text
+                        link.style.textShadow = 'none'; // Remove shadow
+                    });
+                     mainNavbar.querySelector('.btn-navbar-get-started').style.backgroundColor = '#a7d9e4';
+                     mainNavbar.querySelector('.btn-navbar-get-started').style.borderColor = '#a7d9e4';
+                     mainNavbar.querySelector('.btn-navbar-get-started').style.color = '#212529';
+
+                } else {
+                    mainNavbar.classList.remove('navbar-scrolled');
+                    mainNavbar.classList.add('navbar-transparent');
+                    // Ensure text color is white when transparent
+                    mainNavbar.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+                        link.style.color = '#ffffff'; // White text
+                        link.style.textShadow = '1px 1px 3px rgba(0,0,0,0.5)'; // Add shadow
+                    });
+                    mainNavbar.querySelector('.btn-navbar-get-started').style.backgroundColor = 'rgba(167, 217, 228, 0.8)';
+                    mainNavbar.querySelector('.btn-navbar-get-started').style.borderColor = 'rgba(167, 217, 228, 0.8)';
+                    mainNavbar.querySelector('.btn-navbar-get-started').style.color = '#212529';
+
+                }
             });
         });
     </script>
