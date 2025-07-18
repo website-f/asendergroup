@@ -20,17 +20,40 @@
         .navbar-brand img {
             height: 40px;
         }
-        .navbar-nav {
-            width: 100%;
-            justify-content: center;
+        /* Navbar styling for transparent and scrolled states */
+        .navbar-transparent {
+            background-color: transparent; /* Removed !important */
+            box-shadow: none; /* Removed !important */
+            transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
         }
-        .nav-link, .dropdown-item {
+        .navbar-scrolled {
+            background-color: #ffffff; /* Removed !important */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Removed !important */
+            transition: background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+        }
+
+        /* Default link styles (for when navbar is scrolled and opaque) */
+        /* These rules will apply when .navbar-scrolled is present or no specific state is active */
+        .navbar-light .navbar-nav .nav-link,
+        .navbar-light .navbar-nav .dropdown-item {
             font-weight: 500;
-            color: #343a40 !important;
+            color: #343a40; /* Default dark text */
             transition: all 0.3s ease;
         }
-        .nav-link:hover, .dropdown-item:hover {
-            color: #007bff !important;
+        .navbar-light .navbar-nav .nav-link:hover,
+        .navbar-light .navbar-nav .dropdown-item:hover {
+            color: #007bff; /* Bootstrap primary blue */
+        }
+
+        /* Styles specifically for transparent navbar state (higher specificity) */
+        .navbar-transparent.navbar-light .navbar-nav .nav-link,
+        .navbar-transparent.navbar-light .navbar-nav {
+            color: #ffffff; /* White text for transparent state */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Add shadow to text for readability */
+        }
+        .navbar-transparent.navbar-light .navbar-nav .nav-link:hover,
+        .navbar-transparent.navbar-light .navbar-nav .dropdown-item:hover {
+            color: #a7d9e4; /* Lighter hover color for transparent state */
         }
         .btn-navbar-get-started {
             background-color: #a7d9e4;
@@ -105,6 +128,29 @@
             margin-bottom: 20px;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
             color: #e8f5e9; /* Lighter color for heading */
+        }
+
+        /* Solutions Diagram Section */
+        .diagram-section {
+            padding: 80px 0;
+            background-color: #f8f9fa; /* Light grey background */
+            text-align: center;
+        }
+        .diagram-section h2 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #212529;
+        }
+        .diagram-image {
+            max-width: 90%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease-in-out;
+        }
+        .diagram-image:hover {
+            transform: scale(1.01);
         }
         .provide-hero p {
             font-size: 1.5rem;
@@ -197,6 +243,76 @@
             margin-right: 10px;
             font-size: 0.9rem;
             flex-shrink: 0;
+        }
+
+         /* Hero Section with Video Background */
+        .hero-section {
+            padding: 0;
+            text-align: center;
+            border-bottom-left-radius: 70px;
+            border-bottom-right-radius: 70px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            transform: translateX(-50%) translateY(-50%);
+            background-size: cover;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            padding: 40px 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero-section h1 {
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        .hero-section p {
+            font-size: 1.35rem;
+            color: #f0f0f0;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+        }
+        .header-img {
+            width: 200px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .hero-image-below {
+            display: none;
         }
 
         /* Special style for Our Alliances */
@@ -427,7 +543,6 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm navbar-transparent fixed-top" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand" href="./">
-                <!-- You can replace this with your company logo -->
                 <img src="./assets/img/logoasender.png" alt="ASENDER Logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -435,9 +550,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="./">Home</a>
-                    </li>
+                    </li> -->
                     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="ourCompanyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -490,98 +605,35 @@
         </div>
     </nav>
 
-    <!-- Hero Section for We Provide -->
-    <section class="provide-hero">
-        <div class="container animate-on-scroll">
-            <h1>Comprehensive Solutions We Provide</h1>
-            <p>Empowering your business with tailored HR, operational, and strategic support.</p>
+    <section class="hero-section">
+        <video autoplay loop muted playsinline class="hero-video" poster="https://placehold.co/1920x1080/000000/ffffff?text=Video+Loading">
+            <source src="./assets/img/wweprovide.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="animate-on-scroll"> Empowering your business with tailored HR, operational, and strategic support</h1>
+            
+           
+            <a href="https://wa.me/60125019870?text=Hi,%20I%20want%20to%20get%20a%20consultation." class="btn btn-outline-primary btn-lg animate-on-scroll" target="_blank">Get a Consultation</a>
         </div>
     </section>
 
-    <!-- Service Cards Section -->
-    <section class="service-cards-section">
+   <section class="diagram-section">
         <div class="container">
-            <h2 class="text-center mb-5 fw-bold animate-on-scroll">Our Core Service Offerings</h2>
+     
 
-            <!-- Essential HR Card -->
-            <div class="service-card-wrapper animate-on-scroll" style="animation-delay: 0.1s;">
-                <div class="service-icon-col">
-                    <img src="https://placehold.co/150x150/bbdefb/007bff?text=Payroll+Icon" alt="Payroll Icon">
-                </div>
-                <div class="service-content-col">
-                    <h3>ESSENTIAL HR</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Perfect for startups & small teams.</li>
-                        <li><i class="fas fa-check-circle"></i> Payroll, Statutory Payment, Pay slips, Email Support — simplified.</li>
-                        <li><i class="fas fa-check-circle"></i> Customized for Micro-Small Company</li>
-                    </ul>
-                </div>
-            </div>
+            <img src="./assets/img/weprovide3.PNG" onerror="this.onerror=null;" alt="Integrated HRMS and Accounting System Diagram" class="diagram-image animate-on-scroll" style="animation-delay: 0.4s;">
+        </div>
+    </section>
 
-            <!-- Growth Partner Card -->
-            <div class="service-card-wrapper reverse-row animate-on-scroll" style="animation-delay: 0.3s;">
-                <div class="service-icon-col">
-                    <img src="https://placehold.co/150x150/bbdefb/007bff?text=Policy+Icon" alt="Policy Icon">
-                </div>
-                <div class="service-content-col">
-                    <h3>GROWTH PARTNER</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> ESSENTIAL HR + Compliance Oversight</li>
-                        <li><i class="fas fa-check-circle"></i> Ideal for growing businesses.</li>
-                        <li><i class="fas fa-check-circle"></i> HR Policy, Handbook, Recruitment & Advisory.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Strategic Partner Card -->
-            <div class="service-card-wrapper animate-on-scroll" style="animation-delay: 0.5s;">
-                <div class="service-icon-col">
-                    <img src="https://placehold.co/150x150/bbdefb/007bff?text=Strategic+Icon" alt="Strategic Icon">
-                </div>
-                <div class="service-content-col">
-                    <h3>STRATEGIC PARTNER</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> ESSENTIAL HR + GROWTH PARTNER</li>
-                        <li><i class="fas fa-check-circle"></i> For scaling SMEs & multi-location businesses.</li>
-                        <li><i class="fas fa-check-circle"></i> KPI Management</li>
-                        <li><i class="fas fa-check-circle"></i> Dispute Resolution</li>
-                        <li><i class="fas fa-check-circle"></i> Organization Restructure</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Project Based Card -->
-            <div class="service-card-wrapper reverse-row animate-on-scroll" style="animation-delay: 0.7s;">
-                <div class="service-icon-col">
-                    <img src="https://placehold.co/150x150/bbdefb/007bff?text=Project+Icon" alt="Project Icon">
-                </div>
-                <div class="service-content-col">
-                    <h3>PROJECT BASED</h3>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Legal / Contracts Dispute Resolution</li>
-                        <li><i class="fas fa-check-circle"></i> Recruitment Placement</li>
-                        <li><i class="fas fa-check-circle"></i> Labor Law Compliance Audit</li>
-                        <li><i class="fas fa-check-circle"></i> Foreign labors sourcing and compliance</li>
-                        <li><i class="fas fa-check-circle"></i> Tech system setup for support functions</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Our Alliances Card -->
-            <div class="alliances-card animate-on-scroll" style="animation-delay: 0.9s;">
-                <div class="content">
-                    <i class="fas fa-handshake icon-hands"></i>
-                    <h3>OUR ALLIANCES</h3>
-                    <ul>
-                        <li>Industrial Court experienced legal counsels</li>
-                        <li>Custom software development firm</li>
-                        <li>HRDF accredited training firms</li>
-                        <li>Event management team</li>
-                        <li>Recruitment firms</li>
-                    </ul>
-                </div>
-            </div>
-
+    <section class="diagram-section">
+        <div class="container">
+            
+            <video autoplay loop muted playsinline class="diagram-image" poster="https://placehold.co/1920x1080/000000/ffffff?text=Video+Loading">
+            <source src="./assets/img/weprovide2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         </div>
     </section>
 
@@ -619,20 +671,18 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS and Popper.js (for dropdowns) -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <script>
-        // JavaScript for scroll-down fade-in animations (reused)
+        // JavaScript for scroll-down fade-in animations
         document.addEventListener('DOMContentLoaded', () => {
             const animateElements = document.querySelectorAll('.animate-on-scroll');
+            const mainNavbar = document.getElementById('mainNavbar');
 
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // Optional: Unobserve after animation to save resources
-                        // observer.unobserve(entry.target);
                     } else {
                         // Optional: Remove class if element scrolls out of view
                         // entry.target.classList.remove('is-visible');
@@ -642,6 +692,35 @@
 
             animateElements.forEach(element => {
                 observer.observe(element);
+            });
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) { // Adjust this value as needed
+                    mainNavbar.classList.remove('navbar-transparent');
+                    mainNavbar.classList.add('navbar-scrolled');
+                    // Ensure text color reverts to dark when scrolled
+                    mainNavbar.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+                        link.style.color = '#343a40'; // Dark text
+                        link.style.textShadow = 'none'; // Remove shadow
+                    });
+                     mainNavbar.querySelector('.btn-navbar-get-started').style.backgroundColor = '#a7d9e4';
+                     mainNavbar.querySelector('.btn-navbar-get-started').style.borderColor = '#a7d9e4';
+                     mainNavbar.querySelector('.btn-navbar-get-started').style.color = '#212529';
+
+                } else {
+                    mainNavbar.classList.remove('navbar-scrolled');
+                    mainNavbar.classList.add('navbar-transparent');
+                    // Ensure text color is white when transparent
+                    mainNavbar.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+                        link.style.color = '#ffffff'; // White text
+                        link.style.textShadow = '1px 1px 3px rgba(0,0,0,0.5)'; // Add shadow
+                    });
+                    mainNavbar.querySelector('.btn-navbar-get-started').style.backgroundColor = 'rgba(167, 217, 228, 0.8)';
+                    mainNavbar.querySelector('.btn-navbar-get-started').style.borderColor = 'rgba(167, 217, 228, 0.8)';
+                    mainNavbar.querySelector('.btn-navbar-get-started').style.color = '#212529';
+
+                }
             });
         });
     </script>
